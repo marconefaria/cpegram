@@ -2,7 +2,8 @@ import { React, useState } from "react";
 import { Layout, Menu } from 'antd';
 import { AiOutlineMenuUnfold, AiOutlineMenuFold, AiOutlineUser, AiOutlineVideoCamera, AiOutlineUpload } from "react-icons/ai";
 import { Wrapper, Content } from "./styles";
-
+import Logo from "../../images/logo.png";
+import Icone from "../../images/logo-ico.png";
 
 export default function Back({ children }) {
   const { Header, Sider } = Layout;
@@ -16,7 +17,7 @@ export default function Back({ children }) {
     <Wrapper>
       <Layout>
         <Sider trigger={null} collapsible collapsed={open} style={{ height: "100vh" }}>
-          <div className="logo" />
+        {!open ? <img src={Logo} alt="logo CPE" className="logo" /> : <img src={Icone} alt="logo CPE" className="icone" />}
           <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
             <Menu.Item key="1" icon={<AiOutlineUser />}>
               nav 1

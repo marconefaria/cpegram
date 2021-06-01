@@ -17,9 +17,13 @@ export const Wrapper = styled.div`
   }
 
   .logo {
-    height: 32px;
+    height: 58px;
     margin: 16px;
-    background: rgba(255, 255, 255, 0.3);
+  }
+
+  .icone {
+    height: 43px;
+    margin: 16px;
   }
 
   .site-layout .site-layout-background {
