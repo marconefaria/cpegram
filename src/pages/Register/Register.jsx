@@ -1,7 +1,7 @@
 import { React, useState } from "react";
 import { Form, Input, Button } from "antd";
 import { Background, Box } from "../../components/ui";
-import { AiOutlineUser, AiOutlineLock, AiOutlineMail } from "react-icons/ai";
+import { AiOutlineUser, AiOutlineLock, AiOutlineMail, AiOutlineBulb } from "react-icons/ai";
 
 export default function Register() {
   const [state, setState] = useState({});
@@ -20,6 +20,19 @@ export default function Register() {
         <Box>
           <h1>Cadastro</h1>
           <Form initialValues={{ remember: true }}>
+            <Form.Item
+                rules={[{ required: true, message: "Insira um nome de usuário" }]}
+            >
+              <Input
+                prefix={<AiOutlineBulb className="site-form-item-icon" />}
+                type="user"
+                name="name"
+                placeholder="Nome"
+                size="large"
+                onChange={handleChange}
+              />
+            </Form.Item>
+
             <Form.Item
               rules={[{ required: true, message: "Insira um nome de usuário" }]}
             >
