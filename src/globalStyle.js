@@ -416,7 +416,17 @@ template {
     min-height: 10px;
 }
 
+.ant-layout-sider {
+  background: black;
+}
 
+.ant-menu.ant-menu-dark, .ant-menu-dark .ant-menu-sub, .ant-menu.ant-menu-dark .ant-menu-sub {
+    background: black;
+}
+
+.ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal) .ant-menu-item-selected {
+    background: #ffd100;
+}
   
 `;
 

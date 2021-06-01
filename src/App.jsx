@@ -17,7 +17,7 @@ function App() {
               <Route exact path="/" component={Login} />
               <Route exact path="/cadastro" component={Register} />
               <Base>
-                <Route exact path="/nada" component={Register} />
+                <Route exact path="/nada"  />
               </Base>
             </Switch>
           </BrowserRouter>
