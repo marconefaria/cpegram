@@ -4,6 +4,7 @@ import locale from "antd/lib/locale/pt_BR";
 import { ConfigProvider } from "antd";
 import GlobalStyle from "./globalStyle";
 import { Login, Register } from "./pages";
+import { Base } from "./components";
 import "./App.css";
 
 function App() {
@@ -15,6 +16,9 @@ function App() {
             <Switch>
               <Route exact path="/" component={Login} />
               <Route exact path="/cadastro" component={Register} />
+              <Base>
+                <Route exact path="/nada" component={Register} />
+              </Base>
             </Switch>
           </BrowserRouter>
         </ConfigProvider>
