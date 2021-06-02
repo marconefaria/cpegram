@@ -1,30 +1,13 @@
 import { React } from "react";
-import { Card, Avatar } from 'antd';
-import { AiOutlineComment, AiOutlineEllipsis, AiOutlineHeart } from "react-icons/ai";
+import { Post } from "../../components";
 
 export default function Feed() {
-  const { Meta } = Card;
-
   return (
-  <Card
-    style={{ width: "52vw" }}
-    cover={
-      <img
-        alt="example"
-        src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-      />
-    }
-    actions={[
-      <AiOutlineHeart key="like" />,
-      <AiOutlineComment key="edit" />,
-      <AiOutlineEllipsis key="ellipsis" />,
-    ]}
-  >
-    <Meta
-      avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-      title="Card title"
-      description="This is the description"
+    <Post 
+      image_url="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" 
+      perfil_url="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+      name="Marcone Faria"
+      description="Foto de Perfil"
     />
-  </Card>
   );
 }
