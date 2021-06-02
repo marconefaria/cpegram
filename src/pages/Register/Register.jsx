@@ -23,6 +23,7 @@ export default function Register() {
           .then((cred) => {
             return db.collection("users").doc(cred.user.uid).set({
               username: inputs.username,
+              name: inputs.name,
             }).then(() => {
               return message.success("Usuário cadastrado com sucesso!")
             });
