@@ -1,17 +1,30 @@
 import { React, useState } from "react";
-import { Form, Input, Button } from "antd";
+import { Form, Input, Button, message } from "antd";
 import { Background, Box } from "../../components/ui";
 import { AiOutlineUser, AiOutlineLock, AiOutlineMail, AiOutlineBulb } from "react-icons/ai";
+import firebase from "firebase/app";
 
 export default function Register() {
-  const [state, setState] = useState({});
+  const [inputs, setInputs] = useState({});
 
   function handleChange(e) {
-    setState({ ...state, [e.target.name]: e.target.value });
+    setInputs({ ...inputs, [e.target.name]: e.target.value });
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
+    console.log(inputs);
+
+    try {
+        await firebase
+          .auth()
+          .createUserWithEmailAndPassword(inputs.email, inputs.password)
+          .then(() => {
+            return message.success("Usuário cadastrado com sucesso!")
+          });
+    } catch (error) {
+      alert(error);
+    }
   }
 
   return (
@@ -39,7 +52,7 @@ export default function Register() {
               <Input
                 prefix={<AiOutlineUser className="site-form-item-icon" />}
                 type="user"
-                name="user_name"
+                name="username"
                 placeholder="Usuário"
                 size="large"
                 onChange={handleChange}
