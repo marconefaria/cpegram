@@ -2,7 +2,6 @@ import styled from "styled-components/macro";
 
 export const Wrapper = styled.div`
   display: flex;
-  height: 100vh;
 
   .trigger {
     font-size: 32px;
@@ -32,5 +31,5 @@ export const Wrapper = styled.div`
 `;
 
 export const Content = styled.div`
-  padding: 0;
+  padding: 40px 15vw;
 `;
