@@ -1,21 +1,35 @@
-import { React, useState } from "react";
+import { React, useEffect, useState } from "react";
 import { useHistory, Link } from "react-router-dom";
+import { auth } from "../../firebase";
+import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { Form, Input, Checkbox, Button } from "antd";
 import { AiOutlineUser, AiOutlineLock } from "react-icons/ai";
 import { Background, Box } from "../../components/ui";
 
 export default function Login() {
   const history = useHistory();
-  const [state, setState] = useState({});
   const [remember, setRemember] = useState(false);
+  const [userName, setUserName] = useState();
+  const [password, setPassword] = useState();
 
-  function handleChange(e) {
-    setState({ ...state, [e.target.name]: e.target.value });
-  }
+  const [
+    signInWithEmailAndPassword,
+    user,
+    error,
+  ] = useSignInWithEmailAndPassword(auth);
 
   function handleSubmit(e) {
     e.preventDefault();
+    signInWithEmailAndPassword(userName, password);
   }
+
+  useEffect(() => {
+    if (user && !error) {
+      console.log(auth);
+      history.push("/");
+    }
+    //eslint-disable-next-line
+  }, [user, error]);
 
   function handleRememberChange(e) {
     setRemember(e.target.checked);
@@ -37,16 +51,16 @@ export default function Login() {
           <Form.Item
             name="name"
             rules={[
-              { required: true, message: "Insira um endereço de e-mail!" },
+              { required: true, message: "Insira um endereço de e-mail ou username!" },
             ]}
           >
             <Input
               prefix={<AiOutlineUser className="site-form-item-icon" />}
               type="user"
               name="user_name"
-              placeholder="Usuário"
+              placeholder="Usuário ou Email"
               size="large"
-              onChange={handleChange}
+              onChange={(e) => setUserName(e.target.value)}
             />
           </Form.Item>
           <Form.Item
@@ -59,7 +73,7 @@ export default function Login() {
               name="password"
               placeholder="Senha"
               size="large"
-              onChange={handleChange}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </Form.Item>
 

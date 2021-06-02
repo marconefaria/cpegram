@@ -2,6 +2,7 @@ import { React, useState } from "react";
 import { Form, Input, Button, message } from "antd";
 import { Background, Box } from "../../components/ui";
 import { AiOutlineUser, AiOutlineLock, AiOutlineMail, AiOutlineBulb } from "react-icons/ai";
+import { db } from "../../firebase";
 import firebase from "firebase/app";
 
 export default function Register() {
@@ -19,8 +20,12 @@ export default function Register() {
         await firebase
           .auth()
           .createUserWithEmailAndPassword(inputs.email, inputs.password)
-          .then(() => {
-            return message.success("Usuário cadastrado com sucesso!")
+          .then((cred) => {
+            return db.collection("users").doc(cred.user.uid).set({
+              username: inputs.username,
+            }).then(() => {
+              return message.success("Usuário cadastrado com sucesso!")
+            });
           });
     } catch (error) {
       alert(error);
