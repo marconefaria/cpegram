@@ -4,13 +4,19 @@ import { AiOutlineMenuUnfold, AiOutlineMenuFold, AiOutlineUser, AiOutlineHome, A
 import { Wrapper, Content } from "./styles";
 import Logo from "../../images/logo.png";
 import Icone from "../../images/logo-ico.png";
+import { useHistory } from "react-router";
 
 export default function Back({ children }) {
   const { Header, Sider } = Layout;
   const [open, setOpen] = useState(false);
+  const history = useHistory();
 
   function toggleOpen() {
     setOpen((isOpen) => !isOpen);
+  }
+
+  function redirect(path) {
+    history.push(path);
   }
 
   return (
@@ -19,16 +25,16 @@ export default function Back({ children }) {
         <Sider trigger={null} collapsible collapsed={open}>
         {!open ? <img src={Logo} alt="logo CPE" className="logo" /> : <img src={Icone} alt="logo CPE" className="icone" />}
           <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-            <Menu.Item key="" icon={<AiOutlineHome />}>
+            <Menu.Item key="" icon={<AiOutlineHome />} onClick={() => redirect("/")}>
               Home
             </Menu.Item>
-            <Menu.Item key="perfil" icon={<AiOutlineUser />}>
+            <Menu.Item key="perfil" icon={<AiOutlineUser />} onClick={() => redirect("/perfil")}>
               Meu Perfil
             </Menu.Item>
-            <Menu.Item key="configuracoes" icon={<AiOutlineSetting />}>
+            <Menu.Item key="configuracoes" icon={<AiOutlineSetting />} onClick={() => redirect("/configuracoes")}>
               Minhas Informações
             </Menu.Item>
-            <Menu.Item key="post" icon={<AiOutlinePlusSquare />}>
+            <Menu.Item key="post" icon={<AiOutlinePlusSquare />} onClick={() => redirect("/novopost")}>
               Criar um Post
             </Menu.Item>
             <Menu.Item key="sair" icon={<AiOutlineExport />}>

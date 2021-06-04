@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import locale from "antd/lib/locale/pt_BR";
 import { ConfigProvider } from "antd";
 import GlobalStyle from "./globalStyle";
-import { Login, Register, Feed, NewPost /*, Profile, Post*/ } from "./pages";
+import { Login, Register, Feed, NewPost, Profile} from "./pages";
 import { Base } from "./components";
 import "./App.css";
 
@@ -19,6 +19,7 @@ function App() {
               <Base>
                 <Route exact path="/" component={ Feed } />
                 <Route path="/novopost" component={ NewPost } />
+                <Route path="/perfil" component={ Profile } />
               </Base>
             </Switch>
           </BrowserRouter>
