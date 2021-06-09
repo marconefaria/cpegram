@@ -1,5 +1,5 @@
 import { React, useState } from "react";
-import { Form, Input, Checkbox, Button, Upload } from "antd";
+import { Form, Input, Button, Upload } from "antd";
 import { AiOutlineUpload } from "react-icons/ai";
 import { Box } from "../../components";
 

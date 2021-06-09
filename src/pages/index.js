@@ -3,3 +3,4 @@ export * from "./Register";
 export * from "./Feed";
 export * from "./NewPost";
 export * from "./Profile";
+export * from "./Config";
