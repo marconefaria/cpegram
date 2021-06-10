@@ -1,13 +1,45 @@
 import { React, useState } from "react";
-import { Form, Input, Button, Upload } from "antd";
+import { Form, Input, Button, Upload, message } from "antd";
 import { AiOutlineUpload } from "react-icons/ai";
 import { Box } from "../../components";
+import { auth, db } from "../../firebase";
+import firebase from "firebase/app";
+var posts = db.collection("posts");
+let key = posts.doc().id;
 
 export default function NewPost() {
    const [description, setDescription] = useState();
+   const [file, setFile] = useState();
 
-   function handleSubmit(e) {
+   const fileProps = {
+    name: "file",
+    beforeUpload: (file) => {
+      setFile(file);
+      return false;
+    },
+  };
+
+   async function handleSubmit(e) {
      e.preventDefault();
+
+     try{
+      await firebase
+              .storage()
+              .ref("posts/" + auth.currentUser.uid + "/" + key)
+              .put(file)
+              .then(function () {
+                message.success("Foto enviada com sucesso");
+              })
+              .catch((error) => {
+                message.success(error.message);
+              });
+            return db.collection("posts").doc(auth.currentUser.uid).collection("post").doc(key).set({
+              id: key,
+              description: description,
+            });
+     } catch(error){
+        message.error(error);
+     }
    }
 
   return (
@@ -37,8 +69,8 @@ export default function NewPost() {
             rules={[{ required: true, message: "Insira uma foto!" }]}
           >
               <Upload
-                action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
                 listType="picture"
+                {...fileProps}
                 >
                 <Button icon={<AiOutlineUpload />}>Upload</Button>
               </Upload>
